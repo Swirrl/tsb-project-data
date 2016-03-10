@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Swirrl/tsb-project-data.svg?branch=master)](https://travis-ci.org/Swirrl/tsb-project-data)
+
 ## TSB Project Linked Data
 
 Rails app to provide access to information about TSB Projects as Linked Open Data.
