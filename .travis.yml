@@ -6,6 +6,7 @@ services:
 install: true
 
 script:  
+  - docker build -t swirrl/innovateuk-projects .
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 branches:
