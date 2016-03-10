@@ -28,10 +28,9 @@ gem 'kaminari', '0.14.1'
 gem 'roo', '1.12.2'
 
 group :assets do
-  #gem 'therubyracer', platforms: :ruby
-  #gem 'uglifier'
-  gem 'yui-compressor' #note:requires java
+  gem 'uglifier'
 end
+
 
 group :development, :test do
   gem "capistrano"
