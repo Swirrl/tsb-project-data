@@ -68,7 +68,7 @@ TsbProjectData::Application.configure do
   ###################
 
   # these are expected to be linked dockers.
-  MEMCACHED_HOST =         "http://docker-host:11211"
+  MEMCACHED_HOST =         "docker-host:11211"
   FUSEKI_HOST =            "http://docker-host:3030" 
   ELASTICSEARCH_HOST =     "http://docker-host:9200"
 
