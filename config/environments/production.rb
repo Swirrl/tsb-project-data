@@ -76,9 +76,7 @@ TsbProjectData::Application.configure do
   UPDATE_ENDPOINT =        "#{FUSEKI_HOST}/innovateuk/update"
   DATA_ENDPOINT =          "#{FUSEKI_HOST}/innovateuk/data"
 
-  if ENV['RUNTIME'] # check this so that the asset generation doesn't fall over
-    Elasticsearch::Model.client = Elasticsearch::Client.new(host: "#{ELASTICSEARCH_HOST}" )
-  end
+  ENV['ELASTICSEARCH_URL'] = ELASTICSEARCH_HOST
 
   config.cache_store = :dalli_store, MEMCACHED_HOST
 

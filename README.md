@@ -56,5 +56,5 @@ download and run fuseki on port 3030.
 
 #### The PublishMyData app:
 `export HOSTIP=<eth0 ip>`
-`docker run -d -p 127.0.0.1:8080:8080 -v /var/lib/pmd-data/pmd-public:/pmd/public --add-host docker-host:$HOSTIP --name pmd swirrl/innovateuk-projects:build_xxx`
+`docker run -d -p 127.0.0.1:8080:8080  -v /var/lib/pmd-data/pmd-public:/pmd/public --add-host docker-host:$HOSTIP --name pmd swirrl/innovateuk-projects:build_xxx`
 
