@@ -63,22 +63,41 @@ TsbProjectData::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  # Log the query plan for queries taking more than this (works
-  # with SQLite, MySQL, and PostgreSQL)
-  # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  config.cache_store = :dalli_store, 'localhost:11211'
+
+  # ENVIRONMENT VARS
+  ###################
+
+  # these are expected to be linked dockers.
+  MEMCACHED_HOST =         "http://docker-host:11211"
+  FUSEKI_HOST =            "http://docker-host:3030" 
+  ELASTICSEARCH_HOST =     "http://docker-host:9200"
+
+  SPARQL_ENDPOINT =        "#{FUSEKI_HOST}/innovateuk/sparql"
+  UPDATE_ENDPOINT =        "#{FUSEKI_HOST}/innovateuk/update"
+  DATA_ENDPOINT =          "#{FUSEKI_HOST}/innovateuk/data"
+
+  if ENV['RUNTIME'] # check this so that the asset generation doesn't fall over
+    Elasticsearch::Model.client = Elasticsearch::Client.new(host: "#{ELASTICSEARCH_HOST}" )
+  end
+
+  config.cache_store = :dalli_store, MEMCACHED_HOST
 
   PublishMyData.configure do |config|
-    config.sparql_endpoint = 'http://sparql.tsb.swirrl.com/tsb/sparql'
+    config.sparql_endpoint = SPARQL_ENDPOINT
     config.local_domain = 'tsb-projects.labs.theodi.org'
-    config.tripod_cache_store = Tripod::CacheStores::MemcachedCacheStore.new('localhost:11211') #nil
+    config.tripod_cache_store = Tripod::CacheStores::MemcachedCacheStore.new(MEMCACHED_HOST) #nil
     config.sparql_timeout_seconds = 7
   end
 
-  TsbProjectData::DATA_ENDPOINT = 'http://sparql.tsb.swirrl.com/tsb/data'
-  TsbProjectData::DUMP_OUTPUT_PATH = File.join(Rails.root, '../../', 'shared', 'dumps')
+  TsbProjectData::DATA_ENDPOINT = DATA_ENDPOINT
+
+  # TODO: we'll need to do something so this doesn't get stomped / deleted when we redeploy.
+  # (see start-server-production.sh)
+  TsbProjectData::DUMP_OUTPUT_PATH = File.join(Rails.root, 'public', 'dumps')
 
   Tripod.configure do |config|
-    config.update_endpoint = 'http://sparql.tsb.swirrl.com/tsb/update'
+    config.update_endpoint = UPDATE_ENDPOINT
   end
 end
+
+
