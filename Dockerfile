@@ -51,7 +51,7 @@ RUN /bin/bash -l -c "ln -s /usr/bin/nodejs /usr/bin/node"
 
 # Precompile assets
 RUN /bin/bash -l -c "bundle install"
-RUN /bin/bash -l -c "bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets"
+RUN /bin/bash -l -c "env RAILS_ASSETS=true bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets"
 
 # copy public dir out, and allow it to be mounted at runtime (the start script moves them back in case we mount a dir)
 RUN cp -r /pmd/public /pmd/docker/public

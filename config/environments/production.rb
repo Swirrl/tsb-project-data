@@ -76,7 +76,7 @@ TsbProjectData::Application.configure do
   UPDATE_ENDPOINT =        "#{FUSEKI_HOST}/innovateuk/update"
   DATA_ENDPOINT =          "#{FUSEKI_HOST}/innovateuk/data"
 
-  ENV['ELASTICSEARCH_URL'] = ELASTICSEARCH_HOST
+  ENV['ELASTICSEARCH_URL'] = ELASTICSEARCH_HOST unless ENV['RAILS_ASSETS']
 
   config.cache_store = :dalli_store, MEMCACHED_HOST
 
