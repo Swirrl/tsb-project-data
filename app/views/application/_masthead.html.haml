@@ -2,9 +2,8 @@
   .header-container
     .header-row
       #masthead
-        = link_to "/", {style: "color: white"} do
-          Innovate UK Projects Open Data
-          / = image_tag "tsb-logo.png", alt: "Technology Strategy Board Projects Open Data"
+        = link_to "/", {style: "color: white"} do          
+          = image_tag "InnovateUK_LogoB_RGB.svg", alt: "Innovate UK Projects Open Data", style: "height: 40px"
       - if search
         %div
           = form_tag '/projects', method: 'get' do

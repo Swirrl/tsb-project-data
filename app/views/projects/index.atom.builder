@@ -1,9 +1,9 @@
 atom_feed(schema_date: '2013-10-01') do |feed|
   feed.tag!(:link, rel: "alternate", type: "text/csv", href: url_for(csv_params(request.host)))
-  feed.title("TSB Projects Open Data")
+  feed.title("Innovate UK Projects Open Data")
   feed.updated(DateTime.now)
   feed.author do |author|
-    author.name("Technology Strategy Board")
+    author.name("Innovate UK")
   end
 
   @projects.each do |project|
