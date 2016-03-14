@@ -102,6 +102,7 @@ GEM
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
+    execjs (2.6.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
     get_process_mem (0.2.0)
@@ -240,6 +241,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
+    uglifier (2.7.2)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -248,7 +252,6 @@ GEM
       get_process_mem (~> 0)
       unicorn (>= 4, < 6)
     uuidtools (2.1.4)
-    yui-compressor (0.11.0)
 
 PLATFORMS
   ruby
@@ -269,6 +272,6 @@ DEPENDENCIES
   sentry-raven!
   tire (= 0.6.0)
   tripod!
+  uglifier
   unicorn (~> 4.8.3)
   unicorn-worker-killer (~> 0.4.2)
-  yui-compressor

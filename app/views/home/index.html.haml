@@ -22,23 +22,16 @@
 
     #home-intro
       :markdown
-        The Technology Strategy Board funds innovative projects to invest in the growth of businesses, technologies and sectors.
+        Innovate UK funds innovative projects to invest in the growth of businesses, technologies and sectors.
 
         This site aims to provide greater understanding of which projects, businesses, regions and sectors receive grants.
 
-        All the data that underpins this site is available [for download](/dumps/#{CsvDump.latest.basename}) (15MB CSV) so that other people can present or analyse it in other ways.
+        - if #{CsvDump.latest}
+          All the data that underpins this site is available [for download](/dumps/#{CsvDump.latest.basename}) (~15MB CSV) so that other people can present or analyse it in other ways.
 
         This is an alpha site. Please [send us feedback](mailto:Nic.Jefferis@tsb.gov.uk) about how the site could be improved to make it more useful to you.
 
-    #home-panels
-      .home-panel
-        :markdown
-          ### About the Data
-
-          The projects covered on this site date between 2003 and the present day, and are updated each month.
-
-          [Read More &raquo;](/about)
-
+    #home-panels     
       .home-panel
         :markdown
           ### Developers

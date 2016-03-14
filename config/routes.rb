@@ -18,7 +18,8 @@ TsbProjectData::Application.routes.draw do
   # match "/projects/raw_search", to: "projects#raw_search"
 
   match "/viz", to: "home#viz"
-  match "/about", to: "home#about"
+
+  #match "/about", to: "home#about" # removed as out of date
   root to: "home#index"
 
   # MOUNT PMD

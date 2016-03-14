@@ -36,14 +36,14 @@ TsbProjectData::Application.configure do
   config.assets.debug = true
 
   PublishMyData.configure do |config|
-    config.sparql_endpoint = 'http://localhost:3030/tsb_project_data_dev/sparql'
+    config.sparql_endpoint = 'http://tsb-projects.labs.theodi.org/sparql'
     config.local_domain = 'tsb-projects.labs.theodi.org'
     # uncomment to enable caching.
     config.tripod_cache_store = Tripod::CacheStores::MemcachedCacheStore.new('localhost:11211') #nil
     config.sparql_timeout_seconds = 15
   end
 
-  TsbProjectData::DATA_ENDPOINT = 'http://localhost:3030/tsb_project_data_dev/data'
+  TsbProjectData::DATA_ENDPOINT = 'http://tsb-projects.labs.theodi.org/sparql'
   TsbProjectData::DUMP_OUTPUT_PATH = File.join(Rails.root, 'public', 'dumps')
 
   Tripod.configure do |config|
