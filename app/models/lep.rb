@@ -1,3 +1,3 @@
-class Lep
-  include TsbResource
-end
+# class Lep
+#   include TsbResource
+# end

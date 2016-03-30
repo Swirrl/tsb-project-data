@@ -12,13 +12,14 @@ class Project
   field :modified, Vocabulary::DCTERMS.modified, datatype: RDF::XSD.dateTime
 
   # links
-  linked_to :leader, Vocabulary::TSBDEF.hasLeader, class_name: 'Organization'
+#  linked_to :leader, Vocabulary::TSBDEF.hasLeader, class_name: 'Organization' # gone: all just participants now.
 
   # Note a grant is paid to one org for one project
   linked_to :supported_by, Vocabulary::TSBDEF.supportedBy, class_name: 'Grant', multivalued: true
   linked_to :participants, Vocabulary::TSBDEF.hasParticipant, class_name: 'Organization', multivalued: true
 
-  linked_to :competition, Vocabulary::TSBDEF.competition
+  #  linked_to :competition, Vocabulary::TSBDEF.competition (gone - used to link to priority area)
+  linked_to :area_budget_holder, Vocabulary::TSBDEF.areaBudgetHolder, class_name: 'AreaBudgetHolder'
   linked_to :project_status, Vocabulary::TSBDEF.projectStatus, class_name: 'ProjectStatus'
   linked_to :duration, Vocabulary::TSBDEF.projectDuration, class_name: 'ProjectDuration'
   linked_to :cost_category, Vocabulary::TSBDEF.costCategory

@@ -7,8 +7,8 @@ class Grant
   # literals (label comes from tsb resource)
   field :offer_cost, Vocabulary::TSBDEF.offerCost, datatype: RDF::XSD.integer
   field :offer_grant, Vocabulary::TSBDEF.offerGrant, datatype: RDF::XSD.integer
-  field :offer_percentage, Vocabulary::TSBDEF.offerPercentage, datatype: RDF::XSD.decimal
-  field :payments_to_date, Vocabulary::TSBDEF.paymentsToDate, datatype: RDF::XSD.decimal
+  #field :offer_percentage, Vocabulary::TSBDEF.offerPercentage, datatype: RDF::XSD.decimal
+  #field :payments_to_date, Vocabulary::TSBDEF.paymentsToDate, datatype: RDF::XSD.decimal
   field :modified, Vocabulary::DCTERMS.modified, datatype: RDF::XSD.dateTime
 
   # links

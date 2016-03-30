@@ -9,7 +9,7 @@ class Organization
   field :same_as, RDF::OWL.sameAs, is_uri: true, multivalued: true
 
   # links
-  linked_to :leads_projects, Vocabulary::TSBDEF.isLeaderOf, class_name: 'Project', multivalued: true
+  #linked_to :leads_projects, Vocabulary::TSBDEF.isLeaderOf, class_name: 'Project', multivalued: true
   linked_to :participates_in_projects, Vocabulary::TSBDEF.participatesIn, class_name: 'Project', multivalued: true
   linked_to :site, Vocabulary::ORG.hasSite, class_name: 'Site'
   linked_to :legal_entity_form, Vocabulary::TSBDEF.legalEntityForm
