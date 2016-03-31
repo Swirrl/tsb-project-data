@@ -23,7 +23,7 @@
               = project.label
 
       .organization-project-grant.organization-grant-details
-        = render 'application/grant_summary_stack', cost: project.offer_cost_sum_for_organization(organization), max_cost: organization.offer_cost_sum, grant: project.offer_grant_sum_for_organization(organization), payments: project.payments_to_date_sum_for_organization(organization)
+        = render 'application/grant_summary_stack', cost: project.offer_cost_sum_for_organization(organization), max_cost: organization.offer_cost_sum, grant: project.offer_grant_sum_for_organization(organization), payments: 0 #project.payments_to_date_sum_for_organization(organization)
 
 
 = link_to main_app.projects_path(search_params) do

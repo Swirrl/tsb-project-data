@@ -7,11 +7,11 @@
 
     var map = L.mapbox.map('map-canvas', "swirrl.pdmpgpcc", {
       scrollWheelZoom: false,
-      center: [<%= organization.site.lat %>, <%= organization.site.long %>],
+      center: [<%= organization.lat %>, <%= organization.long %>],
       zoom: 13
     });
 
-    var marker = L.marker(new L.LatLng("<%= organization.site.lat %>", "<%= organization.site.long %>"), {
+    var marker = L.marker(new L.LatLng("<%= organization.lat %>", "<%= organization.long %>"), {
       icon: new L.Icon({
         iconSize: new L.Point(14, 20),
         iconUrl: "/assets/pin.png"

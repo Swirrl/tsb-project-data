@@ -26,8 +26,8 @@ module ProjectSearch
       indexes :total_offer_cost, type: 'integer'
 
       # from lead org
-      indexes :leader_uri, type: 'string', analyzer: 'keyword'
-      indexes :leader_label, type: 'string', analyzer: 'snowball', :boost => 5
+      # indexes :leader_uri, type: 'string', analyzer: 'keyword'
+      # indexes :leader_label, type: 'string', analyzer: 'snowball', :boost => 5
 
       # from participants (could be many)
       indexes :participant_uris, type: 'string', analyzer: 'keyword'
@@ -47,17 +47,17 @@ module ProjectSearch
       indexes :region_uris, type: 'string', analyzer: 'keyword'
       indexes :region_labels, type: 'string', analyzer: 'keyword'
 
-      # competition
-      indexes :competition_uri, type: 'string', analyzer: 'keyword'
-      indexes :competition_label, type: 'string', analyzer: 'keyword'
+      # # competition
+      # indexes :competition_uri, type: 'string', analyzer: 'keyword'
+      # indexes :competition_label, type: 'string', analyzer: 'keyword'
 
-      # competition's budget (priority area)
-      indexes :priority_area_uri, type: 'string', analyzer: 'keyword'
-      indexes :priority_area_label, type: 'string', analyzer: 'keyword'
+      # # competition's budget (priority area)
+      # indexes :priority_area_uri, type: 'string', analyzer: 'keyword'
+      # indexes :priority_area_label, type: 'string', analyzer: 'keyword'
 
-      # competition's product
-      indexes :product_uri, type: 'string', analyzer: 'keyword'
-      indexes :product_label, type: 'string', analyzer: 'keyword'
+      # # competition's product
+      # indexes :product_uri, type: 'string', analyzer: 'keyword'
+      # indexes :product_label, type: 'string', analyzer: 'keyword'
 
     end
   end
@@ -74,8 +74,8 @@ module ProjectSearch
     @grant_objects = self.supported_by_uris.map {|grant_uri| resources_hash[grant_uri] }
     @lead_org_object = resources_hash[self.leader_uri]
     @participant_objects = self.participants_uris.map {|org_uri| resources_hash[org_uri] }
-    @site_objects = @participant_objects.map {|p| resources_hash[p.site_uri] }
-    @competition_object ||= resources_hash[self.competition_uri]
+    # @site_objects = @participant_objects.map {|p| resources_hash[p.site_uri] }
+    # @competition_object ||= resources_hash[self.competition_uri]
 
     # Everything else wont be in the resources hash - we will look up from DB. Queries will be cached tho.
 
@@ -86,17 +86,18 @@ module ProjectSearch
     doc
       .merge(project_index_fields)
       .merge(duration_index_fields)
-      .merge(lead_org_index_fields)
       .merge(grant_index_fields)
       .merge(participant_index_fields)
       .merge(participant_size_index_fields)
       .merge(participant_sic_class_index_fields)
       .merge(participant_site_index_fields)
-      .merge( participant_legal_entity_form_index_fields)
+      .merge(participant_legal_entity_form_index_fields)
       .merge(participant_region_index_fields)
-      .merge(competition_index_fields)
-      .merge(priority_area_index_fields)
-      .merge(product_index_fields)
+      # .merge(competition_index_fields)
+      # .merge(priority_area_index_fields)
+      # .merge(product_index_fields)
+
+           # .merge(lead_org_index_fields)
   end
 
   private
@@ -121,13 +122,13 @@ module ProjectSearch
     }
   end
 
-  def lead_org_index_fields
-    @lead_org_object ||= self.leader
-    {
-       leader_uri: self.leader_uri.to_s,
-       leader_label: (@lead_org_object.label rescue nil)
-    }
-  end
+  # def lead_org_index_fields
+  #   @lead_org_object ||= self.leader
+  #   {
+  #      leader_uri: self.leader_uri.to_s,
+  #      leader_label: (@lead_org_object.label rescue nil)
+  #   }
+  # end
 
   def grant_index_fields
     @grant_objects ||= self.supported_by
@@ -178,7 +179,7 @@ module ProjectSearch
   def participant_site_index_fields
     @site_objects ||= @participant_objects.map {|p| p.site }
     {
-      participant_locations: @site_objects.select{ |s| (s.lat.present? && s.long.present?) }.map{ |s| "#{s.lat},#{s.long}"  }
+      participant_locations: @participant_objects.select{ |p| (p.has_lat_long?) }.map{ |p| "#{p.lat},#{p.long}"  }
     }
   end
 
@@ -192,13 +193,13 @@ module ProjectSearch
     }
   end
 
-  def competition_index_fields
-    @competition_object ||= self.competition
-    {
-      competition_uri: self.competition_uri.to_s,
-      competition_label: (@competition_object.label rescue nil)
-    }
-  end
+  # def competition_index_fields
+  #   @competition_object ||= self.competition
+  #   {
+  #     competition_uri: self.competition_uri.to_s,
+  #     competition_label: (@competition_object.label rescue nil)
+  #   }
+  # end
 
   def priority_area_index_fields
     @competition_object ||= self.competition

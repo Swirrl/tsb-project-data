@@ -8,7 +8,7 @@ namespace :search do
   # e.g. DEBUG=true BATCH_SIZE=100 rake search:import_projects
   desc 'imports all the exiting projects in the database into the index. Can be slow.'
   task import_projects: :environment do
-    batch_size = ENV['BATCH_SIZE'] || 300
+    batch_size = ENV['BATCH_SIZE'] || 100
 
     total = Project.count
     processed = 0
@@ -22,6 +22,8 @@ namespace :search do
       resources = criteria.resources.to_a      
       puts "query took #{Time.now - query_pre_time}s"
       
+
+
       response = Project.index.import resources
       processed += resources.length
 

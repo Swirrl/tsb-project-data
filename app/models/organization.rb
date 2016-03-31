@@ -50,16 +50,28 @@ class Organization
     grants.resources.sum(&:offer_grant).to_f
   end
 
-  def payments_to_date_sum
-    grants.resources.sum{ |p| p.payments_to_date || 0}.to_f
-  end
+  # def payments_to_date_sum
+  #   grants.resources.sum{ |p| p.payments_to_date || 0}.to_f
+  # end
 
   def grants
     Grant.where("?uri <#{Vocabulary::TSBDEF.paidTo}> <#{self.uri}>")
   end
 
   def has_lat_long?
-    site.lat.present? && site.long.present?
+    lat && long
+  end
+
+  def site_postcode
+    @site_postcode ||= site.postcode    
+  end
+
+  def lat
+    site_postcode && site_postcode.lat
+  end
+
+  def long
+    site_postcode && site_postcode.long
   end
 
 end

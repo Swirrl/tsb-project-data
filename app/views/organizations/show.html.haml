@@ -37,9 +37,10 @@
           - else
             %div= organization.company_number
 
-        #organization-size
-          %div Enterprise size
-          %div= link_to organization.enterprise_size.label, resource_path_from_uri(organization.enterprise_size.uri)
+        - if organization.enterprise_size
+          #organization-size
+            %div Enterprise size
+            %div= link_to organization.enterprise_size.label, resource_path_from_uri(organization.enterprise_size.uri)
 
       #organization-about-secondary
         #organization-legal
@@ -79,8 +80,7 @@
 
     %section#organization-grant-summary.organization-grant-details
       %h3 Grant summary for #{organization.label}
-      = render 'application/grant_summary_stack', cost: organization.offer_cost_sum, max_cost: organization.offer_cost_sum, grant: organization.offer_grant_sum, payments: organization.payments_to_date_sum
-
+      = render 'application/grant_summary_stack', cost: organization.offer_cost_sum, max_cost: organization.offer_cost_sum, grant: organization.offer_grant_sum, payments: 0#organization.payments_to_date_sum
 
     %section#organization-projects
       = render "organizations/show/project_list", organization: organization

@@ -49,9 +49,9 @@ class Project
     supported_by.sum(&:offer_grant).to_f
   end
 
-  def payments_to_date_sum
-    supported_by.sum(&:payments_to_date).to_f
-  end
+  # def payments_to_date_sum
+  #   supported_by.sum(&:payments_to_date).to_f
+  # end
 
   def offer_cost_sum_for_organization(organization)
     grants_for_organization(organization).resources.sum(&:offer_cost).to_f
@@ -61,9 +61,9 @@ class Project
     grants_for_organization(organization).resources.sum(&:offer_grant).to_f
   end
 
-  def payments_to_date_sum_for_organization(organization)
-    grants_for_organization(organization).resources.sum(&:payments_to_date).to_f
-  end
+  # def payments_to_date_sum_for_organization(organization)
+  #   grants_for_organization(organization).resources.sum(&:payments_to_date).to_f
+  # end
 
   def grants_for_organization(organization)
     Grant
@@ -74,5 +74,6 @@ class Project
   def max_offer_cost
     supported_by.collect(&:offer_cost).max
   end
+
 
 end

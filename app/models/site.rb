@@ -11,11 +11,11 @@ class Site
   # field :long, Vocabulary::GEO.long, datatype: RDF::XSD.decimal
   # field :district, Vocabulary::OSGEO.district, is_uri: true
   
-  field :postcode, Vocabulary::OSDEF.postcode, is_uri: true
+ # field :postcode, Vocabulary::OSDEF.postcode, is_uri: true
 
   # links
   linked_to :address, Vocabulary::ORG.siteAddress, class_name: 'Address'
   linked_to :region, Vocabulary::TSBDEF.region, class_name: 'Region'
-
+  linked_to :postcode, Vocabulary::OSDEF.postcode, class_name: 'Postcode'
 
 end
